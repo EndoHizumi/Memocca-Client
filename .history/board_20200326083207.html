@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>canvas tutorial</title>
+  <script src="board.js"></script>
+  <style>
+    body {
+      background: #888888;
+      width: 100%;
+      height: 2040px;
+    }
+
+    #canvas {
+      background: #f8f8f8;
+      width: 80%;
+      height: 100%;
+    }
+
+    #stock {
+      position: absolute;
+      right: 0;
+      width: 15%;
+    }
+
+    .append {
+      display: block;
+      right: 50%;
+      left: 50%;
+      position: relative;
+    }
+
+    .sticky {
+      border: solid 1px black;
+      width: 150px;
+      height: 100px;
+      margin: 5px;
+      margin-top: 5px;
+      background: yellow;
+    }
+
+    .in_stock {}
+
+    .in_canvas {
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="stock">
+    <button id=Append>Append</button>
+    <textarea class="sticky in_stock">agito</textarea>
+
+  </div>
+  <div id="canvas">
+    <textarea class="sticky in_canvas">hoge</textarea>
+  </div>
+</body>
+<!--
+  boards:
+    GET:
+        boards:一覧表示
+        boards/{id}:詳細表示
+    POST:
+        boards:作成
+    PUT:
+        boards/{id}:更新（メンバーの追加・退出）
+    DELETE:
+        boards/{id}:削除
+  stickeys:
+    GET:
+        stickeys/{boardid}:付箋全部取得
+    POST:
+        stickeys/{boardid}:付箋追加
+    PUT:
+        stickeys/{boardid}:付箋内容変更
+    DELETE:
+        stickeys/{boardid}:付箋削除
+  users:
+    GET:
+        users/:ユーザー一覧
+        users/{userid}:ユーザー詳細情報
+    POST:
+        users/{board}:ユーザー追加
+    PUT:
+        users/{userid}:ユーザー情報変更
+    DELETE:
+        users/{userid}:ユーザー削除
+-->
+
+</html>

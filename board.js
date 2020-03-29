@@ -3,17 +3,25 @@ window.onload = function () {
   isChanged = false
   function inStockOnClick(e) {
     sticky = createSticky(e)
-    sticky.style
     document.getElementById('canvas').appendChild(sticky);
   }
 
   function createSticky(event){
     sticky = document.createElement('div');
     sticky.className = 'sticky in_canvas';
-    sticky.backgroundColor = "black"
+    sticky.appendChild(createButton())
     sticky.appendChild(createTextArea(event));
     $(sticky).draggable();
     return sticky
+  }
+
+  function createButton(params) {
+    button = document.createElement('button')
+    button.innerHTML = 'X'
+    button.addEventListener('click',function(e) {
+      document.getElementById('canvas').removeChild(e.toElement.parentElement)
+    })
+    return button
   }
 
   function createTextArea(e) {

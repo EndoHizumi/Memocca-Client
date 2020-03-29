@@ -3,18 +3,7 @@ window.onload = function () {
   function inStockOnClick(e) {
     var sticky = document.createElement('textarea');
     sticky.className = 'sticky in_canvas';
-    sticky.style.backgroundColor = e.target.style.backgroundColor;
-    sticky.addEventListener("mousedown",function() {
-      sticky.addEventListener("mousemove",onMouseMove)
-    })
-    sticky.addEventListener("mouseup",function() {
-      sticky.removeEventListener("mousemove",onMouseMove)
-    })
-    sticky.addEventListener("mouseleave",function(e){
-      console.log(e.target.value)
-      e.target.blur()
-    })
-    document.getElementById('canvas').appendChild(sticky);
+    $(sticky).draggable();
   }
 
   function onMouseMove(e){

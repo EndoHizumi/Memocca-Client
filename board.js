@@ -19,7 +19,7 @@ window.onload = function () {
     button = document.createElement('button')
     button.innerHTML = 'X'
     button.addEventListener('click',function(e) {
-      document.getElementById('canvas').removeChild(e.toElement.parentElement)
+      document.getElementById('canvas').removeChild(e.target.parentElement)
     })
     return button
   }

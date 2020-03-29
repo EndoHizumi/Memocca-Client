@@ -56,3 +56,61 @@
 @enduml
 ```
 
+## WebAPI EndPoint
+
+### board/
+
+#### GET
+
+- boards:  一覧表示
+- boards/{id}:  詳細表示
+
+#### POST
+
+- boards:  作成
+  
+#### PUT
+
+- boards/{id}:  更新（メンバーの追加・退出）
+
+#### DELETE
+
+- boards/{id}:  削除
+
+### sticky/
+
+#### GET
+
+- sticky/{board_id}: 付箋全部取得
+
+### POST
+
+- sticky/{board_id}: 付箋追加
+
+### PUT
+
+- sticky/{board_id}: 付箋内容変更
+
+### DELETE
+
+- sticky/{board_id}: 付箋削除
+
+### user/
+
+#### GET
+
+- users/: ユーザー一覧
+- users/{user_id}: ユーザー詳細情報
+
+#### POST
+
+- users/{board}: ユーザー追加
+
+#### PUT
+
+- users/{user_id}: ユーザー情報変更
+
+#### DELETE
+
+- users/{user_id}: ユーザー削除
+  

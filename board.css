@@ -26,11 +26,14 @@ body {
   .sticky {
     display: table;
     border: solid 1px black;
-    width: 150px;
-    height: 100px;
     margin: 5px;
     margin-top: 5px;
     background-color: #303030;
+  }
+
+  .in_stock{
+    width: 150px;
+    height: 100px;
   }
 
   .in_canvas button{
@@ -49,10 +52,13 @@ body {
   }
 
   textarea{
-    position: absolute;
-    top:15%;
-    min-height: 85%;
-    min-width: 100%;
+    display: block;
+    width: 300px;
+    height: 150px;
+    min-width: 100px;
+    min-height: 30px;
     box-sizing: border-box;
     font-size: large;
   }
+
+  

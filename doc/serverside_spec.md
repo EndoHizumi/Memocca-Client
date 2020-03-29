@@ -14,10 +14,10 @@
 
 ## テーブル一覧
 
-| name     | diffrence                                                              | note                           |
+| name     | description                                                              | note                           |
 | :------- | :--------------------------------------------------------------------- | :----------------------------- |
-| users    | ユーザーの名前・付箋の色                                               |
-| stickeys | 作ったユーザー・内容・タグなど、付箋のこと・追加された部屋・座標の管理 |
+| users    | ユーザーの名前                                              |
+| stickies | 作ったユーザー・内容・タグなど、付箋のこと・追加された部屋・座標の管理 |
 | owners   | 作ったユーザーと作ったボードの管理                                     |
 | boards   | 各部屋に参加しているメンバーの管理                                     | 退室者は物理削除でいいと思う。 |
 
@@ -32,7 +32,7 @@
         設定色
     }
 
-    entity "stickeys" as stickeys <<T, MASTER_MARK_COLOR>>{
+    entity "stickies" as stickies <<T, MASTER_MARK_COLOR>>{
         + 付箋ID[PK]
         --
         内容
@@ -50,8 +50,9 @@
         合言葉
     }
 
-    stickeys }o--- boards
+    stickies }o--- boards
     users ---o{ boards
-    users ---o{ stickeys
+    users ---o{ stickies
 @enduml
 ```
+

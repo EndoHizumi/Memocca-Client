@@ -9,6 +9,7 @@ window.onload = function () {
   function createSticky(event){
     sticky = document.createElement('div');
     sticky.className = 'sticky in_canvas';
+    sticky.style.position = "absolute"
     sticky.appendChild(createButton())
     sticky.appendChild(createTextArea(event));
     $(sticky).draggable();

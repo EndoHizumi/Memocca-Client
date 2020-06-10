@@ -1,4 +1,20 @@
 window.onload = function () {
+　const api_domain='api.ws-factory.app'
+  const app_name='memocca'
+  const full_name=`${api_domain}/${app_name}`
+
+  //やっぱり、ログイン画面で部屋と名前を入力してからボードに入る方が楽
+  // index.htmlで部屋入力→/authを叩いて、部屋IDを確認→あったら、部屋IDを返す（なかったら、401エラー）
+  // 返ってきたIDをboard.htmlのクエリに追加して、リクエスト(ex: board.html?boardId=hogehoge)
+
+  onStart()
+  function onStart(){
+    // board_idをクエリから取得
+    // 付箋取得APIを叩いて、付箋を取得
+    // 付箋を描画
+    let board_id = getQuery()['board_id']
+    stickys = fetch(`${full_name}/sticky/${board_id}`).then(response => response.ok ? response.json: "" )
+  }
 
   isChanged = false
   function inStockOnClick(e) {
@@ -6,6 +22,11 @@ window.onload = function () {
     document.getElementById('canvas').appendChild(sticky);
   }
 
+  function drawSticky(){
+
+  }
+
+  // todo: 付箋描画をdrawStickyに移す
   function createSticky(event){
     sticky = document.createElement('div');
     sticky.className = 'sticky in_canvas';
@@ -13,6 +34,7 @@ window.onload = function () {
     sticky.appendChild(createButton())
     sticky.appendChild(createTextArea(event));
     $(sticky).draggable();
+    console.log("[POST] ./sticky/{board_id}")
     return sticky
   }
 
@@ -21,6 +43,7 @@ window.onload = function () {
     button.innerHTML = 'X'
     button.addEventListener('click',function(e) {
       document.getElementById('canvas').removeChild(e.target.parentElement)
+      console.log("[DELETE] ./sticky/{board_id}")
     })
     return button
   }
@@ -30,6 +53,7 @@ window.onload = function () {
     textarea.style.backgroundColor = e.target.style.backgroundColor;
     textarea.addEventListener("mouseleave", function (e) {
       if(isChanged){
+        console.log("[PUT] ./sticky/{board_id}")
         console.log(e.target.value);
         isChanged = false
       }
@@ -39,6 +63,7 @@ window.onload = function () {
     return textarea
   }
 
+  this.console.log("[GET] ./sticky/{board_id}")
   in_stock_stickies = Array.from(document.getElementsByClassName('in_stock'))
   in_stock_stickies.forEach(sticky => {
     sticky.addEventListener('click', inStockOnClick, false);

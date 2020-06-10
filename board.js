@@ -7,14 +7,11 @@ window.onload = function () {
   // index.htmlで部屋入力→/authを叩いて、部屋IDを確認→あったら、部屋IDを返す（なかったら、401エラー）
   // 返ってきたIDをboard.htmlのクエリに追加して、リクエスト(ex: board.html?boardId=hogehoge)
 
-  onStart()
-  function onStart(){
-    // board_idをクエリから取得
-    // 付箋取得APIを叩いて、付箋を取得
-    // 付箋を描画
-    let board_id = getQuery()['board_id']
-    stickys = fetch(`${full_name}/sticky/${board_id}`).then(response => response.ok ? response.json: "" )
-  }
+  // board_idをクエリから取得
+  // 付箋取得APIを叩いて、付箋を取得
+  // 付箋を描画
+  const board_id = (new URL(document.location)).searchParams.get('board_id')
+  sticky = fetch(`${full_name}/sticky/${board_id}`).then(response => response.ok ? response.json: "" )
 
   isChanged = false
   function inStockOnClick(e) {
@@ -22,18 +19,17 @@ window.onload = function () {
     document.getElementById('canvas').appendChild(sticky);
   }
 
-  function drawSticky(){
-
-  }
-
-  // todo: 付箋描画をdrawStickyに移す
-  function createSticky(event){
+  function drawSticky(event){
     sticky = document.createElement('div');
     sticky.className = 'sticky in_canvas';
     sticky.style.position = "absolute"
     sticky.appendChild(createButton())
     sticky.appendChild(createTextArea(event));
     $(sticky).draggable();
+  }
+
+  function createSticky(event){
+    drawSticky(event)
     console.log("[POST] ./sticky/{board_id}")
     return sticky
   }

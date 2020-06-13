@@ -1,8 +1,6 @@
 window.onload = function () {
-　const api_domain='api.ws-factory.app'
-  const app_name='memocca'
-  const full_name=`${api_domain}/${app_name}`
-
+// 　const api_domain='api.ws-factory.app/memocca'
+  const api_domain='http://localhost:3000'
   //やっぱり、ログイン画面で部屋と名前を入力してからボードに入る方が楽
   // index.htmlで部屋入力→/authを叩いて、部屋IDを確認→あったら、部屋IDを返す（なかったら、401エラー）
   // 返ってきたIDをboard.htmlのクエリに追加して、リクエスト(ex: board.html?boardId=hogehoge)
@@ -10,8 +8,8 @@ window.onload = function () {
   // board_idをクエリから取得
   // 付箋取得APIを叩いて、付箋を取得
   // 付箋を描画
-  const board_id = (new URL(document.location)).searchParams.get('board_id')
-  sticky = fetch(`${full_name}/sticky/${board_id}`).then(response => response.ok ? response.json: "" )
+  const board_id = (new URL(document.location)).searchParams.get('boardId')
+  sticky = fetch(`${api_domain}/sticky/${board_id}`).then(response => response.ok ? response.json: "" )
 
   isChanged = false
   function inStockOnClick(e) {

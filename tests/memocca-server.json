@@ -1,0 +1,17 @@
+{
+    "sticky": [
+        {
+            "id":1,
+            "sticky_id": 0,
+            "user_id": 0,
+            "board_id": "6c",
+            "color_code": 0,
+            "text": "test",
+            "point_x": 0,
+            "point_y": 0,
+            "width": 0,
+            "height": 0
+        }
+    ],
+    "board":[]
+}

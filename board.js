@@ -17,16 +17,20 @@ window.onload = function () {
     document.getElementById('canvas').appendChild(sticky);
   }
 
-  function drawSticky(event){
+  function drawSticky(color, text, x, y) {
+    // サーバーからもらったデータをもとに付箋を追加できるように、する
     sticky = document.createElement('div');
     sticky.className = 'sticky in_canvas';
     sticky.style.position = "absolute"
+    sticky.style.top = x;
+    sticky.style.left = y;
     sticky.appendChild(createButton())
-    sticky.appendChild(createTextArea(event));
+    sticky.appendChild(createTextArea(color, text));
     $(sticky).draggable();
   }
 
-  function createSticky(event){
+  function createSticky(event) {
+    // サーバーからもらったデータをもとに付箋を追加できるように、する
     drawSticky(event)
     console.log("[POST] ./sticky/{board_id}")
     return sticky
@@ -45,6 +49,7 @@ window.onload = function () {
   function createTextArea(e) {
     textarea = document.createElement('textarea');
     textarea.style.backgroundColor = e.target.style.backgroundColor;
+    textarea.value = "";
     textarea.addEventListener("mouseleave", function (e) {
       if(isChanged){
         console.log("[PUT] ./sticky/{board_id}")

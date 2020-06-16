@@ -9,8 +9,6 @@ window.onload = function () {
   // 付箋取得APIを叩いて、付箋を取得
   // 付箋を描画
   isChanged = false
-  const board_id = (new URL(document.location)).searchParams.get('boardId')
-  stickies = fetch(`${api_domain}/sticky/${board_id}`).then(response => { return response.ok ? response.json() : "" }).then(stickies => this.console.log(stickies))
   // sticky_text = e.target.text
 
   function drawSticky(color, text, x, y, width, height) {
@@ -25,13 +23,18 @@ window.onload = function () {
     sticky.appendChild(createButton())
     sticky.appendChild(createTextArea(color, text));
     $(sticky).draggable();
+    return sticky;
   }
 
-  function createSticky(color, text) {
-    // サーバーからもらったデータをもとに付箋を追加できるように、する
-    drawSticky(color, text, 0, 0, 300, 150)
+  function appendSticky(sticky){
+    sticky= drawSticky(sticky['color_code'], sticky['text'], sticky['point_x'], sticky['point_y'], sticky['width'], sticky['height'])
+    document.getElementById('canvas').appendChild(sticky);
+  }
+
+  function createSticky(color) {
+    sticky = drawSticky(color, "", 0, 0, 300, 150)
     console.log("[POST] ./sticky/{board_id}")
-    return sticky
+    document.getElementById('canvas').appendChild(sticky);
   }
 
   function createButton() {
@@ -62,11 +65,13 @@ window.onload = function () {
 
   function inStockOnClick(e) {
     sticky_color = e.target.style.backgroundColor
-    sticky = createSticky(sticky_color, "")
-    document.getElementById('canvas').appendChild(sticky);
+    sticky = createSticky(sticky_color)
   }
 
   this.console.log("[GET] ./sticky/{board_id}")
+  const board_id = (new URL(document.location)).searchParams.get('boardId')
+  stickies = fetch(`${api_domain}/sticky/${board_id}`).then(response => { return response.ok ? response.json() : "" }).then(sticky_data => sticky_data['data'].forEach(sticky => appendSticky(sticky)))
+
   in_stock_stickies = Array.from(document.getElementsByClassName('in_stock'))
   in_stock_stickies.forEach(sticky => {
     sticky.addEventListener('click', inStockOnClick, false);

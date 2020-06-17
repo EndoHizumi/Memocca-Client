@@ -40,6 +40,7 @@
         タグ
         ボードID
         座標
+        カラーコード
     }
 
     entity "boards" as boards <<T, MASTER_MARK_COLOR>>{
@@ -48,6 +49,7 @@
         オーナーID
         ユーザーID
         合言葉
+        非公開フラグ
     }
 
     stickies }o--- boards

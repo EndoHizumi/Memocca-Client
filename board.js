@@ -16,15 +16,9 @@ window.onload = function () {
     sticky = document.createElement('div');
     sticky.className = 'sticky in_canvas';
     sticky.style.position = "absolute"
-    sticky.style.top = x;
-    sticky.style.left = y;
-    sticky.style.width = width;
-    sticky.style.height = height;
-    sticky.appendChild(createButton())
-    sticky.appendChild(createTextArea(color, text));
-    $(sticky).draggable();
-    return sticky;
-  }
+  sticky.style.top = x+"px";
+  sticky.style.left = y+"px";
+  sticky.appendChild(createTextArea(color, text, width, height));
 
   function appendSticky(sticky){
     sticky= drawSticky(sticky['color_code'], sticky['text'], sticky['point_x'], sticky['point_y'], sticky['width'], sticky['height'])
@@ -49,11 +43,10 @@ window.onload = function () {
 
   function createTextArea(rgb, text) {
     textarea = document.createElement('textarea');
-    textarea.style.backgroundColor = rgb;
-    textarea.value = text;
-    textarea.addEventListener("mouseleave", function (e) {
-      if (isChanged) {
-        console.log("[PUT] ./sticky/{board_id}")
+  textarea.style.backgroundColor = color;
+  textarea.style.width = width + "px";
+  textarea.style.height = height + "px";
+  textarea.value = text;
         console.log(e.target.value);
         isChanged = false
       }

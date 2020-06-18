@@ -53,8 +53,6 @@ body {
 
   textarea{
     display: block;
-    width: 300px;
-    height: 150px;
     min-width: 100px;
     min-height: 30px;
     box-sizing: border-box;

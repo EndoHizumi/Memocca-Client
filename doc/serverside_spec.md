@@ -35,7 +35,7 @@
         タグ
         ボードID
         座標
-        カラーID
+        カラーコード
     }
 
     entity "boards" as boards <<T, MASTER_MARK_COLOR>>{
@@ -44,6 +44,7 @@
         オーナーID
         ユーザーID
         合言葉
+        非公開フラグ
     }
 
     entity "colors" as colors <<M, MASTER_MARK_COLOR>>{

@@ -23,7 +23,7 @@ function drawSticky(color, text, x, y, width, height) {
   sticky.style.left = y+"px";
   sticky.appendChild(createButton())
   sticky.appendChild(createTextArea(color, text, width, height));
-  sticky.addEventListener("mousemove",e => {
+  sticky.addEventListener("mouseup",e => {
     console.log("Y: " + (e.target.getBoundingClientRect().y + window.pageYOffset))
     console.log("X: " + (e.target.getBoundingClientRect().x + window.pageXOffset))
   })
@@ -59,17 +59,23 @@ function createTextArea(color, text, width, height) {
   textarea.style.height = height + "px";
   textarea.value = text;
   textarea.addEventListener("input", e => isChanged = true )
+  textarea.addEventListener("mouseup", e => {
+    console.log("[PUT] ./sticky/{board_id}")
+    console.log("width: " + e.target.style.width)
+    console.log("height: " + e.target.style.height)
+  })
   textarea.addEventListener("mouseleave", e => {
     if (isChanged) {
       console.log("[PUT] ./sticky/{board_id}")
-      console.log("width: " + e.target.style.width)
-      console.log("height: " + e.target.style.height)
       console.log(e.target.value);
       isChanged = false
     }
     this.blur();
   })
-  textarea.addEventListener("mouseup",() =>  console.log("mouseup"))
+
+  textarea.addEventListener('dblclick',e => {
+    e.preventDefault();
+  })
   return textarea
 }
 
